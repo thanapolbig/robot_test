@@ -1,0 +1,1570 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot rpa="false" generated="20200115 15:39:35.387" generator="Robot 3.1.2 (Python 2.7.12 on linux2)">
+<suite source="/home/big/GO-PATH/robot/testsampran.robot" id="s1" name="Testsampran">
+<test id="s1-t1" name="Test POST Doc IssueGarden">
+<kw name="POST Doc IssueGarden">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>url</arg>
+<arg>${URL_GET}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:35.507" level="INFO">Creating Session using : alias=url, url=http://localhost:7777, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20200115 15:39:35.507" starttime="20200115 15:39:35.506"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+<arg>apikey=${jwt_token2}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20200115 15:39:35.508" level="INFO">${headers} = {u'Content-Type': u'application/json', u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1'}</msg>
+<status status="PASS" endtime="20200115 15:39:35.508" starttime="20200115 15:39:35.507"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>{"bc_user": "123456","garden_id": "1","garden_name": "ลำไย","owner": "JoJo","areas": "13ไร่ 2งาน","date_final_use_chemical": "2019-7-3", "history_use_chemical": [ { "name_use_chemical": "toxic chemical" } ],"status": "อินทรีย์","path_image": ["/home/itsaraphap/Desktop/messageImage_1567519885643.jpg" ],"app_user": "bc_123","details": "พื้นที่สูงรกรากมีหน้าผา แห้งแล้ง"}</arg>
+</arguments>
+<assign>
+<var>${data}</var>
+</assign>
+<msg timestamp="20200115 15:39:35.509" level="INFO">${data} = {"bc_user": "123456","garden_id": "1","garden_name": "ลำไย","owner": "JoJo","areas": "13ไร่ 2งาน","date_final_use_chemical": "2019-7-3", "history_use_chemical": [ { "name_use_chemical": "toxic chemica...</msg>
+<status status="PASS" endtime="20200115 15:39:35.509" starttime="20200115 15:39:35.508"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>url</arg>
+<arg>/IssueGarden</arg>
+<arg>headers=${headers}</arg>
+<arg>data=${data}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20200115 15:39:35.509" level="INFO">POST Request using : uri=/IssueGarden, files=None, params=None, timeout=None, allow_redirects=True
+headers={u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'User-Agent': 'python-requests/2.9.1', 'Connection': 'keep-alive', u'Content-Type': u'application/json'} 
+data={"bc_user": "123456","garden_id": "1","garden_name": "ลำไย","owner": "JoJo","areas": "13ไร่ 2งาน","date_final_use_chemical": "2019-7-3", "history_use_chemical": [ { "name_use_chemical": "toxic chemical" } ],"status": "อินทรีย์","path_image": ["/home/itsaraphap/Desktop/messageImage_1567519885643.jpg" ],"app_user": "bc_123","details": "พื้นที่สูงรกรากมีหน้าผา แห้งแล้ง"} 
+json=None</msg>
+<msg timestamp="20200115 15:39:35.512" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20200115 15:39:48.278" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" endtime="20200115 15:39:48.278" starttime="20200115 15:39:35.509"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${response.json()}</arg>
+</arguments>
+<assign>
+<var>${json}</var>
+</assign>
+<msg timestamp="20200115 15:39:48.279" level="INFO">${json} = {u'message': u'Request for [IssueGarden] CREATE GardenDoc|6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b : ', u'statusCode': 201}</msg>
+<status status="PASS" endtime="20200115 15:39:48.279" starttime="20200115 15:39:48.278"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${json}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:48.279" level="INFO">{u'message': u'Request for [IssueGarden] CREATE GardenDoc|6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b : ', u'statusCode': 201}</msg>
+<status status="PASS" endtime="20200115 15:39:48.279" starttime="20200115 15:39:48.279"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:48.279" level="INFO">&lt;Response [201]&gt;</msg>
+<status status="PASS" endtime="20200115 15:39:48.279" starttime="20200115 15:39:48.279"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${data}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:48.280" level="INFO">{"bc_user": "123456","garden_id": "1","garden_name": "ลำไย","owner": "JoJo","areas": "13ไร่ 2งาน","date_final_use_chemical": "2019-7-3", "history_use_chemical": [ { "name_use_chemical": "toxic chemical" } ],"status": "อินทรีย์","path_image": ["/home/itsaraphap/Desktop/messageImage_1567519885643.jpg" ],"app_user": "bc_123","details": "พื้นที่สูงรกรากมีหน้าผา แห้งแล้ง"}</msg>
+<status status="PASS" endtime="20200115 15:39:48.280" starttime="20200115 15:39:48.279"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+</arguments>
+<msg timestamp="20200115 15:39:48.280" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20200115 15:39:48.280" starttime="20200115 15:39:48.280"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:39:48.280" starttime="20200115 15:39:35.506"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:39:48.280" critical="yes" starttime="20200115 15:39:35.505"></status>
+</test>
+<test id="s1-t2" name="Test POST Doc IssuePlanYear">
+<kw name="POST Doc IssuePlanYear">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>url</arg>
+<arg>${URL_GET}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:48.281" level="INFO">Creating Session using : alias=url, url=http://localhost:7777, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20200115 15:39:48.282" starttime="20200115 15:39:48.281"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+<arg>apikey=${jwt_token2}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20200115 15:39:48.282" level="INFO">${headers} = {u'Content-Type': u'application/json', u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1'}</msg>
+<status status="PASS" endtime="20200115 15:39:48.282" starttime="20200115 15:39:48.282"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>{"bc_user": ${bc_user},"planyear_date": "2018-08-04","app_user": "สมชาย1","user_name": "นายสมชาย สมใจ","group_name": "ไร่สมชาย","garden_id": "1","agri_standard": "Ifoam","register_appuser": "22/01/2000"}</arg>
+</arguments>
+<assign>
+<var>${data}</var>
+</assign>
+<msg timestamp="20200115 15:39:48.283" level="INFO">${data} = {"bc_user": "123456","planyear_date": "2018-08-04","app_user": "สมชาย1","user_name": "นายสมชาย สมใจ","group_name": "ไร่สมชาย","garden_id": "1","agri_standard": "Ifoam","register_appuser": "22/01/2000"...</msg>
+<status status="PASS" endtime="20200115 15:39:48.283" starttime="20200115 15:39:48.282"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>url</arg>
+<arg>/IssuePlanYear</arg>
+<arg>headers=${headers}</arg>
+<arg>data=${data}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20200115 15:39:48.283" level="INFO">POST Request using : uri=/IssuePlanYear, files=None, params=None, timeout=None, allow_redirects=True
+headers={u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'User-Agent': 'python-requests/2.9.1', 'Connection': 'keep-alive', u'Content-Type': u'application/json'} 
+data={"bc_user": "123456","planyear_date": "2018-08-04","app_user": "สมชาย1","user_name": "นายสมชาย สมใจ","group_name": "ไร่สมชาย","garden_id": "1","agri_standard": "Ifoam","register_appuser": "22/01/2000"} 
+json=None</msg>
+<msg timestamp="20200115 15:39:48.284" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20200115 15:39:50.393" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" endtime="20200115 15:39:50.393" starttime="20200115 15:39:48.283"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${response.json()}</arg>
+</arguments>
+<assign>
+<var>${json}</var>
+</assign>
+<msg timestamp="20200115 15:39:50.394" level="INFO">${json} = {u'message': u'Request for [IssuePlanYear] CREATE PlanYearDoc|5cb7b2e28d443b75aea0db76e3715e6a5ce3d4c0c409acd526f4efc058fdf554 and UPDATE GardenDoc|6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e...</msg>
+<status status="PASS" endtime="20200115 15:39:50.394" starttime="20200115 15:39:50.393"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${json}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:50.394" level="INFO">{u'message': u'Request for [IssuePlanYear] CREATE PlanYearDoc|5cb7b2e28d443b75aea0db76e3715e6a5ce3d4c0c409acd526f4efc058fdf554 and UPDATE GardenDoc|6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b : ', u'statusCode': 201}</msg>
+<status status="PASS" endtime="20200115 15:39:50.394" starttime="20200115 15:39:50.394"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:50.394" level="INFO">&lt;Response [201]&gt;</msg>
+<status status="PASS" endtime="20200115 15:39:50.394" starttime="20200115 15:39:50.394"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${data}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:50.395" level="INFO">{"bc_user": "123456","planyear_date": "2018-08-04","app_user": "สมชาย1","user_name": "นายสมชาย สมใจ","group_name": "ไร่สมชาย","garden_id": "1","agri_standard": "Ifoam","register_appuser": "22/01/2000"}</msg>
+<status status="PASS" endtime="20200115 15:39:50.395" starttime="20200115 15:39:50.395"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+</arguments>
+<msg timestamp="20200115 15:39:50.395" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20200115 15:39:50.395" starttime="20200115 15:39:50.395"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:39:50.395" starttime="20200115 15:39:48.281"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:39:50.395" critical="yes" starttime="20200115 15:39:48.281"></status>
+</test>
+<test id="s1-t3" name="Test POST Doc IssuePlanting">
+<kw name="POST Doc IssuePlanting">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>url</arg>
+<arg>${URL_GET}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:50.396" level="INFO">Creating Session using : alias=url, url=http://localhost:7777, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20200115 15:39:50.397" starttime="20200115 15:39:50.396"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+<arg>apikey=${jwt_token2}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20200115 15:39:50.397" level="INFO">${headers} = {u'Content-Type': u'application/json', u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1'}</msg>
+<status status="PASS" endtime="20200115 15:39:50.397" starttime="20200115 15:39:50.397"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>{"bc_user": ${bc_user},"app_user": "สมชาย1","plant_id": "2","plant_name": "สวน","seed_type": "ต้นกล้า","reproduction_type": "ปักชำ", "seed_marketplace": "LemonFarm","garden_id": "1","plant_date": "2018-08-04","planyear_date": "2018-08-04","path_images": "/home/sampran/images.jp","predict_harvest": "2019-10-19","predict_quantity": 1000,"update_date": "2018-10-13"}</arg>
+</arguments>
+<assign>
+<var>${data}</var>
+</assign>
+<msg timestamp="20200115 15:39:50.398" level="INFO">${data} = {"bc_user": "123456","app_user": "สมชาย1","plant_id": "2","plant_name": "สวน","seed_type": "ต้นกล้า","reproduction_type": "ปักชำ", "seed_marketplace": "LemonFarm","garden_id": "1","plant_date": "2018-...</msg>
+<status status="PASS" endtime="20200115 15:39:50.398" starttime="20200115 15:39:50.397"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>url</arg>
+<arg>/IssuePlanting</arg>
+<arg>headers=${headers}</arg>
+<arg>data=${data}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20200115 15:39:50.398" level="INFO">POST Request using : uri=/IssuePlanting, files=None, params=None, timeout=None, allow_redirects=True
+headers={u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'User-Agent': 'python-requests/2.9.1', 'Connection': 'keep-alive', u'Content-Type': u'application/json'} 
+data={"bc_user": "123456","app_user": "สมชาย1","plant_id": "2","plant_name": "สวน","seed_type": "ต้นกล้า","reproduction_type": "ปักชำ", "seed_marketplace": "LemonFarm","garden_id": "1","plant_date": "2018-08-04","planyear_date": "2018-08-04","path_images": "/home/sampran/images.jp","predict_harvest": "2019-10-19","predict_quantity": 1000,"update_date": "2018-10-13"} 
+json=None</msg>
+<msg timestamp="20200115 15:39:50.399" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20200115 15:39:52.538" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" endtime="20200115 15:39:52.538" starttime="20200115 15:39:50.398"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${response.json()}</arg>
+</arguments>
+<assign>
+<var>${json}</var>
+</assign>
+<msg timestamp="20200115 15:39:52.539" level="INFO">${json} = {u'message': u'Request for [IssuePlanting] CREATE PlantDoc|472b01093cf63449a189e5b5e08ce325346094eb83b90d3304a92659415870e2 and UPDATE PlanYearDoc|5cb7b2e28d443b75aea0db76e3715e6a5ce3d4c0c409acd526f4e...</msg>
+<status status="PASS" endtime="20200115 15:39:52.539" starttime="20200115 15:39:52.538"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${json}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:52.540" level="INFO">{u'message': u'Request for [IssuePlanting] CREATE PlantDoc|472b01093cf63449a189e5b5e08ce325346094eb83b90d3304a92659415870e2 and UPDATE PlanYearDoc|5cb7b2e28d443b75aea0db76e3715e6a5ce3d4c0c409acd526f4efc058fdf554 ,GardenDoc|6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b : ', u'statusCode': 201}</msg>
+<status status="PASS" endtime="20200115 15:39:52.540" starttime="20200115 15:39:52.540"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:52.541" level="INFO">&lt;Response [201]&gt;</msg>
+<status status="PASS" endtime="20200115 15:39:52.541" starttime="20200115 15:39:52.540"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${data}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:52.541" level="INFO">{"bc_user": "123456","app_user": "สมชาย1","plant_id": "2","plant_name": "สวน","seed_type": "ต้นกล้า","reproduction_type": "ปักชำ", "seed_marketplace": "LemonFarm","garden_id": "1","plant_date": "2018-08-04","planyear_date": "2018-08-04","path_images": "/home/sampran/images.jp","predict_harvest": "2019-10-19","predict_quantity": 1000,"update_date": "2018-10-13"}</msg>
+<status status="PASS" endtime="20200115 15:39:52.542" starttime="20200115 15:39:52.541"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+</arguments>
+<msg timestamp="20200115 15:39:52.542" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20200115 15:39:52.542" starttime="20200115 15:39:52.542"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:39:52.543" starttime="20200115 15:39:50.396"></status>
+</kw>
+<kw name="POST Doc IssuePlanting2">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>url</arg>
+<arg>${URL_GET}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:52.544" level="INFO">Creating Session using : alias=url, url=http://localhost:7777, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20200115 15:39:52.544" starttime="20200115 15:39:52.543"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+<arg>apikey=${jwt_token2}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20200115 15:39:52.546" level="INFO">${headers} = {u'Content-Type': u'application/json', u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1'}</msg>
+<status status="PASS" endtime="20200115 15:39:52.546" starttime="20200115 15:39:52.544"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>{"bc_user": ${bc_user},"app_user": "สมชาย1","plant_id": "3","plant_name": "สวน","seed_type": "ต้นกล้า","reproduction_type": "ปักชำ", "seed_marketplace": "LemonFarm","garden_id": "1","plant_date": "2018-08-04","planyear_date": "2018-08-04","path_images": "/home/sampran/images.jp","predict_harvest": "2019-10-19","predict_quantity": 1000,"update_date": "2018-10-13"}</arg>
+</arguments>
+<assign>
+<var>${data}</var>
+</assign>
+<msg timestamp="20200115 15:39:52.547" level="INFO">${data} = {"bc_user": "123456","app_user": "สมชาย1","plant_id": "3","plant_name": "สวน","seed_type": "ต้นกล้า","reproduction_type": "ปักชำ", "seed_marketplace": "LemonFarm","garden_id": "1","plant_date": "2018-...</msg>
+<status status="PASS" endtime="20200115 15:39:52.547" starttime="20200115 15:39:52.546"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>url</arg>
+<arg>/IssuePlanting</arg>
+<arg>headers=${headers}</arg>
+<arg>data=${data}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20200115 15:39:52.548" level="INFO">POST Request using : uri=/IssuePlanting, files=None, params=None, timeout=None, allow_redirects=True
+headers={u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'User-Agent': 'python-requests/2.9.1', 'Connection': 'keep-alive', u'Content-Type': u'application/json'} 
+data={"bc_user": "123456","app_user": "สมชาย1","plant_id": "3","plant_name": "สวน","seed_type": "ต้นกล้า","reproduction_type": "ปักชำ", "seed_marketplace": "LemonFarm","garden_id": "1","plant_date": "2018-08-04","planyear_date": "2018-08-04","path_images": "/home/sampran/images.jp","predict_harvest": "2019-10-19","predict_quantity": 1000,"update_date": "2018-10-13"} 
+json=None</msg>
+<msg timestamp="20200115 15:39:52.550" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20200115 15:39:54.665" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" endtime="20200115 15:39:54.665" starttime="20200115 15:39:52.547"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${response.json()}</arg>
+</arguments>
+<assign>
+<var>${json}</var>
+</assign>
+<msg timestamp="20200115 15:39:54.666" level="INFO">${json} = {u'message': u'Request for [IssuePlanting] CREATE PlantDoc|d700e360918b491470b0d680668e56dcbbc161f56493afbca2a75fa642f63b66 and UPDATE PlanYearDoc|5cb7b2e28d443b75aea0db76e3715e6a5ce3d4c0c409acd526f4e...</msg>
+<status status="PASS" endtime="20200115 15:39:54.666" starttime="20200115 15:39:54.665"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${json}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:54.666" level="INFO">{u'message': u'Request for [IssuePlanting] CREATE PlantDoc|d700e360918b491470b0d680668e56dcbbc161f56493afbca2a75fa642f63b66 and UPDATE PlanYearDoc|5cb7b2e28d443b75aea0db76e3715e6a5ce3d4c0c409acd526f4efc058fdf554 ,GardenDoc|6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b : ', u'statusCode': 201}</msg>
+<status status="PASS" endtime="20200115 15:39:54.666" starttime="20200115 15:39:54.666"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:54.667" level="INFO">&lt;Response [201]&gt;</msg>
+<status status="PASS" endtime="20200115 15:39:54.667" starttime="20200115 15:39:54.666"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${data}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:54.667" level="INFO">{"bc_user": "123456","app_user": "สมชาย1","plant_id": "3","plant_name": "สวน","seed_type": "ต้นกล้า","reproduction_type": "ปักชำ", "seed_marketplace": "LemonFarm","garden_id": "1","plant_date": "2018-08-04","planyear_date": "2018-08-04","path_images": "/home/sampran/images.jp","predict_harvest": "2019-10-19","predict_quantity": 1000,"update_date": "2018-10-13"}</msg>
+<status status="PASS" endtime="20200115 15:39:54.667" starttime="20200115 15:39:54.667"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+</arguments>
+<msg timestamp="20200115 15:39:54.667" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20200115 15:39:54.667" starttime="20200115 15:39:54.667"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:39:54.667" starttime="20200115 15:39:52.543"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:39:54.668" critical="yes" starttime="20200115 15:39:50.396"></status>
+</test>
+<test id="s1-t4" name="Test PUT Doc AddManagePlanting">
+<kw name="PUT Doc AddManagePlanting">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>url</arg>
+<arg>${URL_GET}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:54.669" level="INFO">Creating Session using : alias=url, url=http://localhost:7777, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20200115 15:39:54.669" starttime="20200115 15:39:54.668"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+<arg>apikey=${jwt_token2}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20200115 15:39:54.669" level="INFO">${headers} = {u'Content-Type': u'application/json', u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1'}</msg>
+<status status="PASS" endtime="20200115 15:39:54.669" starttime="20200115 15:39:54.669"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>{"bc_user": ${bc_user},"app_user": "Jirapon0150","plant_id": "2","production_id": "1","production_name": "รดน้ำ","activities_detail": "รดน้ำวันละ3ครั้ง","production_date": "2018-08-04","production_factor": "ฝักบัว","garden_id": "1","planyear_date": "2018-08-04"}</arg>
+</arguments>
+<assign>
+<var>${data}</var>
+</assign>
+<msg timestamp="20200115 15:39:54.670" level="INFO">${data} = {"bc_user": "123456","app_user": "Jirapon0150","plant_id": "2","production_id": "1","production_name": "รดน้ำ","activities_detail": "รดน้ำวันละ3ครั้ง","production_date": "2018-08-04","production_facto...</msg>
+<status status="PASS" endtime="20200115 15:39:54.670" starttime="20200115 15:39:54.669"></status>
+</kw>
+<kw name="Put Request" library="RequestsLibrary">
+<doc>Send a PUT request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>url</arg>
+<arg>/AddManagePlanting</arg>
+<arg>headers=${headers}</arg>
+<arg>data=${data}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20200115 15:39:54.670" level="INFO">PUT Request using : uri=/AddManagePlanting, files=None, params=None, timeout=None, allow_redirects=True
+headers={u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'User-Agent': 'python-requests/2.9.1', 'Connection': 'keep-alive', u'Content-Type': u'application/json'} 
+data={"bc_user": "123456","app_user": "Jirapon0150","plant_id": "2","production_id": "1","production_name": "รดน้ำ","activities_detail": "รดน้ำวันละ3ครั้ง","production_date": "2018-08-04","production_factor": "ฝักบัว","garden_id": "1","planyear_date": "2018-08-04"} 
+json=None</msg>
+<msg timestamp="20200115 15:39:54.671" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20200115 15:39:56.777" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20200115 15:39:56.777" starttime="20200115 15:39:54.670"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${response.json()}</arg>
+</arguments>
+<assign>
+<var>${json}</var>
+</assign>
+<msg timestamp="20200115 15:39:56.777" level="INFO">${json} = {u'message': u'Request for [AddManagePlanting] UPDATE PlantingDoc|472b01093cf63449a189e5b5e08ce325346094eb83b90d3304a92659415870e2 : ', u'statusCode': 200}</msg>
+<status status="PASS" endtime="20200115 15:39:56.777" starttime="20200115 15:39:56.777"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${json}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:56.778" level="INFO">{u'message': u'Request for [AddManagePlanting] UPDATE PlantingDoc|472b01093cf63449a189e5b5e08ce325346094eb83b90d3304a92659415870e2 : ', u'statusCode': 200}</msg>
+<status status="PASS" endtime="20200115 15:39:56.778" starttime="20200115 15:39:56.777"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:56.778" level="INFO">&lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20200115 15:39:56.778" starttime="20200115 15:39:56.778"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${data}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:56.778" level="INFO">{"bc_user": "123456","app_user": "Jirapon0150","plant_id": "2","production_id": "1","production_name": "รดน้ำ","activities_detail": "รดน้ำวันละ3ครั้ง","production_date": "2018-08-04","production_factor": "ฝักบัว","garden_id": "1","planyear_date": "2018-08-04"}</msg>
+<status status="PASS" endtime="20200115 15:39:56.778" starttime="20200115 15:39:56.778"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20200115 15:39:56.779" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20200115 15:39:56.779" starttime="20200115 15:39:56.778"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:39:56.779" starttime="20200115 15:39:54.668"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:39:56.779" critical="yes" starttime="20200115 15:39:54.668"></status>
+</test>
+<test id="s1-t5" name="Test PUT Doc AddHarvest">
+<kw name="PUT Doc AddHarvest">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>url</arg>
+<arg>${URL_GET}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:56.780" level="INFO">Creating Session using : alias=url, url=http://localhost:7777, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20200115 15:39:56.780" starttime="20200115 15:39:56.780"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+<arg>apikey=${jwt_token2}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20200115 15:39:56.781" level="INFO">${headers} = {u'Content-Type': u'application/json', u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1'}</msg>
+<status status="PASS" endtime="20200115 15:39:56.781" starttime="20200115 15:39:56.780"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>{"bc_user": ${bc_user},"plant_id": "2","harvest_id": "1","lot_no": "19902","harvest_transform_check": "yes","app_user": "123456","harvest_date": "2020-12-20","product_grade_a": "100","product_grade_b": "100","product_grade_c": "100","product_grade_d": "100","product_grade_e": "100","product_total_bad": "100","unit": "ผล","process_image": "cp/git/stock/produck1.png","product_image": "cp/git/stock/produck2.png","harvest_status": "คงค้าง","tools": "รถไถ","garden_id": "1","planyear_date": "2018-08-04"}</arg>
+</arguments>
+<assign>
+<var>${data}</var>
+</assign>
+<msg timestamp="20200115 15:39:56.781" level="INFO">${data} = {"bc_user": "123456","plant_id": "2","harvest_id": "1","lot_no": "19902","harvest_transform_check": "yes","app_user": "123456","harvest_date": "2020-12-20","product_grade_a": "100","product_grade_b": ...</msg>
+<status status="PASS" endtime="20200115 15:39:56.781" starttime="20200115 15:39:56.781"></status>
+</kw>
+<kw name="Put Request" library="RequestsLibrary">
+<doc>Send a PUT request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>url</arg>
+<arg>/AddHarvest</arg>
+<arg>headers=${headers}</arg>
+<arg>data=${data}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20200115 15:39:56.782" level="INFO">PUT Request using : uri=/AddHarvest, files=None, params=None, timeout=None, allow_redirects=True
+headers={u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'User-Agent': 'python-requests/2.9.1', 'Connection': 'keep-alive', u'Content-Type': u'application/json'} 
+data={"bc_user": "123456","plant_id": "2","harvest_id": "1","lot_no": "19902","harvest_transform_check": "yes","app_user": "123456","harvest_date": "2020-12-20","product_grade_a": "100","product_grade_b": "100","product_grade_c": "100","product_grade_d": "100","product_grade_e": "100","product_total_bad": "100","unit": "ผล","process_image": "cp/git/stock/produck1.png","product_image": "cp/git/stock/produck2.png","harvest_status": "คงค้าง","tools": "รถไถ","garden_id": "1","planyear_date": "2018-08-04"} 
+json=None</msg>
+<msg timestamp="20200115 15:39:56.782" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20200115 15:39:58.882" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20200115 15:39:58.883" starttime="20200115 15:39:56.781"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${response.json()}</arg>
+</arguments>
+<assign>
+<var>${json}</var>
+</assign>
+<msg timestamp="20200115 15:39:58.883" level="INFO">${json} = {u'message': u'Request for [AddHarvest] UPDATE  Harvest|26866cd19a75623380adf0b5c4f11eadd4a5c4bf4e1acb2036fdd8e2170c30ea and PlantingDoc|472b01093cf63449a189e5b5e08ce325346094eb83b90d3304a92659415870e...</msg>
+<status status="PASS" endtime="20200115 15:39:58.883" starttime="20200115 15:39:58.883"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${json}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:58.883" level="INFO">{u'message': u'Request for [AddHarvest] UPDATE  Harvest|26866cd19a75623380adf0b5c4f11eadd4a5c4bf4e1acb2036fdd8e2170c30ea and PlantingDoc|472b01093cf63449a189e5b5e08ce325346094eb83b90d3304a92659415870e2 : ', u'statusCode': 200}</msg>
+<status status="PASS" endtime="20200115 15:39:58.883" starttime="20200115 15:39:58.883"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:58.884" level="INFO">&lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20200115 15:39:58.884" starttime="20200115 15:39:58.884"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${data}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:58.884" level="INFO">{"bc_user": "123456","plant_id": "2","harvest_id": "1","lot_no": "19902","harvest_transform_check": "yes","app_user": "123456","harvest_date": "2020-12-20","product_grade_a": "100","product_grade_b": "100","product_grade_c": "100","product_grade_d": "100","product_grade_e": "100","product_total_bad": "100","unit": "ผล","process_image": "cp/git/stock/produck1.png","product_image": "cp/git/stock/produck2.png","harvest_status": "คงค้าง","tools": "รถไถ","garden_id": "1","planyear_date": "2018-08-04"}</msg>
+<status status="PASS" endtime="20200115 15:39:58.884" starttime="20200115 15:39:58.884"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20200115 15:39:58.884" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20200115 15:39:58.885" starttime="20200115 15:39:58.884"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:39:58.885" starttime="20200115 15:39:56.779"></status>
+</kw>
+<kw name="PUT Doc AddHarvest2">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>url</arg>
+<arg>${URL_GET}</arg>
+</arguments>
+<msg timestamp="20200115 15:39:58.885" level="INFO">Creating Session using : alias=url, url=http://localhost:7777, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20200115 15:39:58.886" starttime="20200115 15:39:58.885"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+<arg>apikey=${jwt_token2}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20200115 15:39:58.886" level="INFO">${headers} = {u'Content-Type': u'application/json', u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1'}</msg>
+<status status="PASS" endtime="20200115 15:39:58.886" starttime="20200115 15:39:58.886"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>{"bc_user": ${bc_user},"plant_id": "2","harvest_id": "2","lot_no": "19902","harvest_transform_check": "yes","app_user": "123456","harvest_date": "2020-12-20","product_grade_a": "100","product_grade_b": "100","product_grade_c": "100","product_grade_d": "100","product_grade_e": "100","product_total_bad": "100","unit": "ผล","process_image": "cp/git/stock/produck1.png","product_image": "cp/git/stock/produck2.png","harvest_status": "คงค้าง","tools": "รถไถ","garden_id": "1","planyear_date": "2018-08-04"}</arg>
+</arguments>
+<assign>
+<var>${data}</var>
+</assign>
+<msg timestamp="20200115 15:39:58.887" level="INFO">${data} = {"bc_user": "123456","plant_id": "2","harvest_id": "2","lot_no": "19902","harvest_transform_check": "yes","app_user": "123456","harvest_date": "2020-12-20","product_grade_a": "100","product_grade_b": ...</msg>
+<status status="PASS" endtime="20200115 15:39:58.887" starttime="20200115 15:39:58.886"></status>
+</kw>
+<kw name="Put Request" library="RequestsLibrary">
+<doc>Send a PUT request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>url</arg>
+<arg>/AddHarvest</arg>
+<arg>headers=${headers}</arg>
+<arg>data=${data}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20200115 15:39:58.887" level="INFO">PUT Request using : uri=/AddHarvest, files=None, params=None, timeout=None, allow_redirects=True
+headers={u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'User-Agent': 'python-requests/2.9.1', 'Connection': 'keep-alive', u'Content-Type': u'application/json'} 
+data={"bc_user": "123456","plant_id": "2","harvest_id": "2","lot_no": "19902","harvest_transform_check": "yes","app_user": "123456","harvest_date": "2020-12-20","product_grade_a": "100","product_grade_b": "100","product_grade_c": "100","product_grade_d": "100","product_grade_e": "100","product_total_bad": "100","unit": "ผล","process_image": "cp/git/stock/produck1.png","product_image": "cp/git/stock/produck2.png","harvest_status": "คงค้าง","tools": "รถไถ","garden_id": "1","planyear_date": "2018-08-04"} 
+json=None</msg>
+<msg timestamp="20200115 15:39:58.888" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20200115 15:40:00.976" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:00.976" starttime="20200115 15:39:58.887"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${response.json()}</arg>
+</arguments>
+<assign>
+<var>${json}</var>
+</assign>
+<msg timestamp="20200115 15:40:00.976" level="INFO">${json} = {u'message': u'Request for [AddHarvest] UPDATE  Harvest|52abc6f0fae508e9aa940921f40d3385b45cfa4183624718b30310e7c64041b6 and PlantingDoc|472b01093cf63449a189e5b5e08ce325346094eb83b90d3304a92659415870e...</msg>
+<status status="PASS" endtime="20200115 15:40:00.976" starttime="20200115 15:40:00.976"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${json}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:00.977" level="INFO">{u'message': u'Request for [AddHarvest] UPDATE  Harvest|52abc6f0fae508e9aa940921f40d3385b45cfa4183624718b30310e7c64041b6 and PlantingDoc|472b01093cf63449a189e5b5e08ce325346094eb83b90d3304a92659415870e2 : ', u'statusCode': 200}</msg>
+<status status="PASS" endtime="20200115 15:40:00.977" starttime="20200115 15:40:00.976"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:00.977" level="INFO">&lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:00.977" starttime="20200115 15:40:00.977"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${data}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:00.977" level="INFO">{"bc_user": "123456","plant_id": "2","harvest_id": "2","lot_no": "19902","harvest_transform_check": "yes","app_user": "123456","harvest_date": "2020-12-20","product_grade_a": "100","product_grade_b": "100","product_grade_c": "100","product_grade_d": "100","product_grade_e": "100","product_total_bad": "100","unit": "ผล","process_image": "cp/git/stock/produck1.png","product_image": "cp/git/stock/produck2.png","harvest_status": "คงค้าง","tools": "รถไถ","garden_id": "1","planyear_date": "2018-08-04"}</msg>
+<status status="PASS" endtime="20200115 15:40:00.977" starttime="20200115 15:40:00.977"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20200115 15:40:00.978" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:00.978" starttime="20200115 15:40:00.977"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:40:00.978" starttime="20200115 15:39:58.885"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:40:00.978" critical="yes" starttime="20200115 15:39:56.779"></status>
+</test>
+<test id="s1-t6" name="Test PUT Doc AddSelling">
+<kw name="PUT Doc AddSelling">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>url</arg>
+<arg>${URL_GET}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:00.979" level="INFO">Creating Session using : alias=url, url=http://localhost:7777, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20200115 15:40:00.979" starttime="20200115 15:40:00.979"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+<arg>apikey=${jwt_token2}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20200115 15:40:00.979" level="INFO">${headers} = {u'Content-Type': u'application/json', u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1'}</msg>
+<status status="PASS" endtime="20200115 15:40:00.980" starttime="20200115 15:40:00.979"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>{"bc_user": ${bc_user},"selling_id": "1","selling_list": [{"sold_grade_a": 50,"sold_grade_b": 30,"sold_grade_c": 20,"sold_grade_d": 50,"sold_grade_e": 50,"buyer": "darkmarket","sold_date": "2019-10-11","lot_no": "2020-12-20","app_user": "123456"}],"garden_id": "1","plant_date": "2018-08-04","planyear_date": "2018-08-04","plant_id": "2"}</arg>
+</arguments>
+<assign>
+<var>${data}</var>
+</assign>
+<msg timestamp="20200115 15:40:00.980" level="INFO">${data} = {"bc_user": "123456","selling_id": "1","selling_list": [{"sold_grade_a": 50,"sold_grade_b": 30,"sold_grade_c": 20,"sold_grade_d": 50,"sold_grade_e": 50,"buyer": "darkmarket","sold_date": "2019-10-11",...</msg>
+<status status="PASS" endtime="20200115 15:40:00.980" starttime="20200115 15:40:00.980"></status>
+</kw>
+<kw name="Put Request" library="RequestsLibrary">
+<doc>Send a PUT request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>url</arg>
+<arg>/AddSelling</arg>
+<arg>headers=${headers}</arg>
+<arg>data=${data}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20200115 15:40:00.980" level="INFO">PUT Request using : uri=/AddSelling, files=None, params=None, timeout=None, allow_redirects=True
+headers={u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'User-Agent': 'python-requests/2.9.1', 'Connection': 'keep-alive', u'Content-Type': u'application/json'} 
+data={"bc_user": "123456","selling_id": "1","selling_list": [{"sold_grade_a": 50,"sold_grade_b": 30,"sold_grade_c": 20,"sold_grade_d": 50,"sold_grade_e": 50,"buyer": "darkmarket","sold_date": "2019-10-11","lot_no": "2020-12-20","app_user": "123456"}],"garden_id": "1","plant_date": "2018-08-04","planyear_date": "2018-08-04","plant_id": "2"} 
+json=None</msg>
+<msg timestamp="20200115 15:40:00.981" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20200115 15:40:03.103" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:03.103" starttime="20200115 15:40:00.980"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${response.json()}</arg>
+</arguments>
+<assign>
+<var>${json}</var>
+</assign>
+<msg timestamp="20200115 15:40:03.104" level="INFO">${json} = {u'message': u'Request for [AddSelling] CREATE Selling|6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b and UPDATE PlantingDoc|472b01093cf63449a189e5b5e08ce325346094eb83b90d3304a926594...</msg>
+<status status="PASS" endtime="20200115 15:40:03.104" starttime="20200115 15:40:03.103"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${json}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:03.105" level="INFO">{u'message': u'Request for [AddSelling] CREATE Selling|6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b and UPDATE PlantingDoc|472b01093cf63449a189e5b5e08ce325346094eb83b90d3304a92659415870e2 : ', u'statusCode': 200}</msg>
+<status status="PASS" endtime="20200115 15:40:03.105" starttime="20200115 15:40:03.105"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:03.106" level="INFO">&lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:03.106" starttime="20200115 15:40:03.106"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${data}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:03.107" level="INFO">{"bc_user": "123456","selling_id": "1","selling_list": [{"sold_grade_a": 50,"sold_grade_b": 30,"sold_grade_c": 20,"sold_grade_d": 50,"sold_grade_e": 50,"buyer": "darkmarket","sold_date": "2019-10-11","lot_no": "2020-12-20","app_user": "123456"}],"garden_id": "1","plant_date": "2018-08-04","planyear_date": "2018-08-04","plant_id": "2"}</msg>
+<status status="PASS" endtime="20200115 15:40:03.108" starttime="20200115 15:40:03.107"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20200115 15:40:03.108" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:03.108" starttime="20200115 15:40:03.108"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:40:03.109" starttime="20200115 15:40:00.978"></status>
+</kw>
+<kw name="PUT Doc AddSelling2">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>url</arg>
+<arg>${URL_GET}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:03.112" level="INFO">Creating Session using : alias=url, url=http://localhost:7777, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20200115 15:40:03.113" starttime="20200115 15:40:03.109"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+<arg>apikey=${jwt_token2}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20200115 15:40:03.114" level="INFO">${headers} = {u'Content-Type': u'application/json', u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1'}</msg>
+<status status="PASS" endtime="20200115 15:40:03.114" starttime="20200115 15:40:03.113"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>{"bc_user": ${bc_user},"selling_id": "2","selling_list": [{"sold_grade_a": 50,"sold_grade_b": 30,"sold_grade_c": 20,"sold_grade_d": 50,"sold_grade_e": 50,"buyer": "darkmarket","sold_date": "2019-10-11","lot_no": "2020-12-20","app_user": "123456"}],"garden_id": "1","plant_date": "2018-08-04","planyear_date": "2018-08-04","plant_id": "2"}</arg>
+</arguments>
+<assign>
+<var>${data}</var>
+</assign>
+<msg timestamp="20200115 15:40:03.114" level="INFO">${data} = {"bc_user": "123456","selling_id": "2","selling_list": [{"sold_grade_a": 50,"sold_grade_b": 30,"sold_grade_c": 20,"sold_grade_d": 50,"sold_grade_e": 50,"buyer": "darkmarket","sold_date": "2019-10-11",...</msg>
+<status status="PASS" endtime="20200115 15:40:03.114" starttime="20200115 15:40:03.114"></status>
+</kw>
+<kw name="Put Request" library="RequestsLibrary">
+<doc>Send a PUT request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>url</arg>
+<arg>/AddSelling</arg>
+<arg>headers=${headers}</arg>
+<arg>data=${data}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20200115 15:40:03.116" level="INFO">PUT Request using : uri=/AddSelling, files=None, params=None, timeout=None, allow_redirects=True
+headers={u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'User-Agent': 'python-requests/2.9.1', 'Connection': 'keep-alive', u'Content-Type': u'application/json'} 
+data={"bc_user": "123456","selling_id": "2","selling_list": [{"sold_grade_a": 50,"sold_grade_b": 30,"sold_grade_c": 20,"sold_grade_d": 50,"sold_grade_e": 50,"buyer": "darkmarket","sold_date": "2019-10-11","lot_no": "2020-12-20","app_user": "123456"}],"garden_id": "1","plant_date": "2018-08-04","planyear_date": "2018-08-04","plant_id": "2"} 
+json=None</msg>
+<msg timestamp="20200115 15:40:03.118" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20200115 15:40:05.218" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:05.218" starttime="20200115 15:40:03.115"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${response.json()}</arg>
+</arguments>
+<assign>
+<var>${json}</var>
+</assign>
+<msg timestamp="20200115 15:40:05.218" level="INFO">${json} = {u'message': u'Request for [AddSelling] CREATE Selling|d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35 and UPDATE PlantingDoc|472b01093cf63449a189e5b5e08ce325346094eb83b90d3304a926594...</msg>
+<status status="PASS" endtime="20200115 15:40:05.218" starttime="20200115 15:40:05.218"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${json}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:05.219" level="INFO">{u'message': u'Request for [AddSelling] CREATE Selling|d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35 and UPDATE PlantingDoc|472b01093cf63449a189e5b5e08ce325346094eb83b90d3304a92659415870e2 : ', u'statusCode': 200}</msg>
+<status status="PASS" endtime="20200115 15:40:05.219" starttime="20200115 15:40:05.219"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:05.219" level="INFO">&lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:05.219" starttime="20200115 15:40:05.219"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${data}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:05.219" level="INFO">{"bc_user": "123456","selling_id": "2","selling_list": [{"sold_grade_a": 50,"sold_grade_b": 30,"sold_grade_c": 20,"sold_grade_d": 50,"sold_grade_e": 50,"buyer": "darkmarket","sold_date": "2019-10-11","lot_no": "2020-12-20","app_user": "123456"}],"garden_id": "1","plant_date": "2018-08-04","planyear_date": "2018-08-04","plant_id": "2"}</msg>
+<status status="PASS" endtime="20200115 15:40:05.219" starttime="20200115 15:40:05.219"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20200115 15:40:05.220" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:05.220" starttime="20200115 15:40:05.220"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:40:05.220" starttime="20200115 15:40:03.109"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:40:05.220" critical="yes" starttime="20200115 15:40:00.978"></status>
+</test>
+<test id="s1-t7" name="Test POST Doc IssueStock">
+<kw name="POST Doc IssueStock">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>url</arg>
+<arg>${URL_GET}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:05.221" level="INFO">Creating Session using : alias=url, url=http://localhost:7777, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20200115 15:40:05.221" starttime="20200115 15:40:05.221"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+<arg>apikey=${jwt_token2}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20200115 15:40:05.222" level="INFO">${headers} = {u'Content-Type': u'application/json', u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1'}</msg>
+<status status="PASS" endtime="20200115 15:40:05.222" starttime="20200115 15:40:05.221"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>{"bc_user": ${bc_user}, "app_user": "ธนพล", "Owner": "Ohmsum", "Location": "Ekkamai28", "CreateDate": "2019-10-19"}</arg>
+</arguments>
+<assign>
+<var>${data}</var>
+</assign>
+<msg timestamp="20200115 15:40:05.222" level="INFO">${data} = {"bc_user": "123456", "app_user": "ธนพล", "Owner": "Ohmsum", "Location": "Ekkamai28", "CreateDate": "2019-10-19"}</msg>
+<status status="PASS" endtime="20200115 15:40:05.222" starttime="20200115 15:40:05.222"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>url</arg>
+<arg>/IssueStock</arg>
+<arg>headers=${headers}</arg>
+<arg>data=${data}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20200115 15:40:05.223" level="INFO">POST Request using : uri=/IssueStock, files=None, params=None, timeout=None, allow_redirects=True
+headers={u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'User-Agent': 'python-requests/2.9.1', 'Connection': 'keep-alive', u'Content-Type': u'application/json'} 
+data={"bc_user": "123456", "app_user": "ธนพล", "Owner": "Ohmsum", "Location": "Ekkamai28", "CreateDate": "2019-10-19"} 
+json=None</msg>
+<msg timestamp="20200115 15:40:05.223" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20200115 15:40:07.328" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:07.328" starttime="20200115 15:40:05.222"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${response.json()}</arg>
+</arguments>
+<assign>
+<var>${json}</var>
+</assign>
+<msg timestamp="20200115 15:40:07.329" level="INFO">${json} = {u'message': u'Request for [IssueStock] CREATE StockDoc|c2d8bfb3f5041de5b74349e506a09b77dce690225582a3a3d3459eee0ac0e9b3 : ', u'statusCode': 201}</msg>
+<status status="PASS" endtime="20200115 15:40:07.329" starttime="20200115 15:40:07.328"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${json}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:07.329" level="INFO">{u'message': u'Request for [IssueStock] CREATE StockDoc|c2d8bfb3f5041de5b74349e506a09b77dce690225582a3a3d3459eee0ac0e9b3 : ', u'statusCode': 201}</msg>
+<status status="PASS" endtime="20200115 15:40:07.329" starttime="20200115 15:40:07.329"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:07.329" level="INFO">&lt;Response [201]&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:07.329" starttime="20200115 15:40:07.329"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${data}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:07.330" level="INFO">{"bc_user": "123456", "app_user": "ธนพล", "Owner": "Ohmsum", "Location": "Ekkamai28", "CreateDate": "2019-10-19"}</msg>
+<status status="PASS" endtime="20200115 15:40:07.330" starttime="20200115 15:40:07.329"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+</arguments>
+<msg timestamp="20200115 15:40:07.330" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:07.330" starttime="20200115 15:40:07.330"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:40:07.330" starttime="20200115 15:40:05.221"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:40:07.330" critical="yes" starttime="20200115 15:40:05.220"></status>
+</test>
+<test id="s1-t8" name="Test PUT Doc IssuePrepareStock">
+<kw name="PUT Doc IssuePrepareStock">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>url</arg>
+<arg>${URL_GET}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:07.331" level="INFO">Creating Session using : alias=url, url=http://localhost:7777, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20200115 15:40:07.332" starttime="20200115 15:40:07.331"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+<arg>apikey=${jwt_token2}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20200115 15:40:07.332" level="INFO">${headers} = {u'Content-Type': u'application/json', u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1'}</msg>
+<status status="PASS" endtime="20200115 15:40:07.332" starttime="20200115 15:40:07.332"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>{"bc_user": ${bc_user}, "app_user": "ธนพล", "id": 1, "product_unit_id": 3, "product_unit_name": "ห่อ", "name": "พลั่ว", "is_diy": "ture", "buy_from": "7-11", "price": 120, "quantity": 12, "image": "cp/git/stock/produck1.png"}</arg>
+</arguments>
+<assign>
+<var>${data}</var>
+</assign>
+<msg timestamp="20200115 15:40:07.333" level="INFO">${data} = {"bc_user": "123456", "app_user": "ธนพล", "id": 1, "product_unit_id": 3, "product_unit_name": "ห่อ", "name": "พลั่ว", "is_diy": "ture", "buy_from": "7-11", "price": 120, "quantity": 12, "image": "cp/g...</msg>
+<status status="PASS" endtime="20200115 15:40:07.333" starttime="20200115 15:40:07.333"></status>
+</kw>
+<kw name="Put Request" library="RequestsLibrary">
+<doc>Send a PUT request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>url</arg>
+<arg>/IssuePrepareStock</arg>
+<arg>headers=${headers}</arg>
+<arg>data=${data}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20200115 15:40:07.334" level="INFO">PUT Request using : uri=/IssuePrepareStock, files=None, params=None, timeout=None, allow_redirects=True
+headers={u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'User-Agent': 'python-requests/2.9.1', 'Connection': 'keep-alive', u'Content-Type': u'application/json'} 
+data={"bc_user": "123456", "app_user": "ธนพล", "id": 1, "product_unit_id": 3, "product_unit_name": "ห่อ", "name": "พลั่ว", "is_diy": "ture", "buy_from": "7-11", "price": 120, "quantity": 12, "image": "cp/git/stock/produck1.png"} 
+json=None</msg>
+<msg timestamp="20200115 15:40:07.335" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20200115 15:40:09.431" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:09.432" starttime="20200115 15:40:07.333"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${response.json()}</arg>
+</arguments>
+<assign>
+<var>${json}</var>
+</assign>
+<msg timestamp="20200115 15:40:09.432" level="INFO">${json} = {u'message': u'Request for [IssuePrepareStock] UPDATE StockDoc|c2d8bfb3f5041de5b74349e506a09b77dce690225582a3a3d3459eee0ac0e9b3 : ', u'statusCode': 200}</msg>
+<status status="PASS" endtime="20200115 15:40:09.432" starttime="20200115 15:40:09.432"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${json}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:09.433" level="INFO">{u'message': u'Request for [IssuePrepareStock] UPDATE StockDoc|c2d8bfb3f5041de5b74349e506a09b77dce690225582a3a3d3459eee0ac0e9b3 : ', u'statusCode': 200}</msg>
+<status status="PASS" endtime="20200115 15:40:09.433" starttime="20200115 15:40:09.432"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:09.433" level="INFO">&lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:09.433" starttime="20200115 15:40:09.433"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${data}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:09.433" level="INFO">{"bc_user": "123456", "app_user": "ธนพล", "id": 1, "product_unit_id": 3, "product_unit_name": "ห่อ", "name": "พลั่ว", "is_diy": "ture", "buy_from": "7-11", "price": 120, "quantity": 12, "image": "cp/git/stock/produck1.png"}</msg>
+<status status="PASS" endtime="20200115 15:40:09.433" starttime="20200115 15:40:09.433"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20200115 15:40:09.434" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:09.434" starttime="20200115 15:40:09.433"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:40:09.434" starttime="20200115 15:40:07.331"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:40:09.434" critical="yes" starttime="20200115 15:40:07.331"></status>
+</test>
+<test id="s1-t9" name="Test Post Doc IssueProduct">
+<kw name="POST Doc IssueProduct">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>url</arg>
+<arg>${URL_GET}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:09.435" level="INFO">Creating Session using : alias=url, url=http://localhost:7777, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20200115 15:40:09.436" starttime="20200115 15:40:09.435"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+<arg>apikey=${jwt_token2}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20200115 15:40:09.436" level="INFO">${headers} = {u'Content-Type': u'application/json', u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1'}</msg>
+<status status="PASS" endtime="20200115 15:40:09.436" starttime="20200115 15:40:09.436"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>{"bc_user": ${bc_user}, "plant_info": [ { "garden_id": 1, "planyear_date": "2018-08-04", "plant_id": 2 } ], "lotNo": "1", "product_name": "Weedy", "product_image": "cp/git/stock/produck2.png"}</arg>
+</arguments>
+<assign>
+<var>${data}</var>
+</assign>
+<msg timestamp="20200115 15:40:09.437" level="INFO">${data} = {"bc_user": "123456", "plant_info": [ { "garden_id": 1, "planyear_date": "2018-08-04", "plant_id": 2 } ], "lotNo": "1", "product_name": "Weedy", "product_image": "cp/git/stock/produck2.png"}</msg>
+<status status="PASS" endtime="20200115 15:40:09.437" starttime="20200115 15:40:09.437"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>url</arg>
+<arg>/IssueProduct</arg>
+<arg>headers=${headers}</arg>
+<arg>data=${data}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20200115 15:40:09.438" level="INFO">POST Request using : uri=/IssueProduct, files=None, params=None, timeout=None, allow_redirects=True
+headers={u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'User-Agent': 'python-requests/2.9.1', 'Connection': 'keep-alive', u'Content-Type': u'application/json'} 
+data={"bc_user": "123456", "plant_info": [ { "garden_id": 1, "planyear_date": "2018-08-04", "plant_id": 2 } ], "lotNo": "1", "product_name": "Weedy", "product_image": "cp/git/stock/produck2.png"} 
+json=None</msg>
+<msg timestamp="20200115 15:40:09.439" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20200115 15:40:11.553" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:11.554" starttime="20200115 15:40:09.437"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${response.json()}</arg>
+</arguments>
+<assign>
+<var>${json}</var>
+</assign>
+<msg timestamp="20200115 15:40:11.555" level="INFO">${json} = {u'message': u'Request for [IssueProduct] CREATE ProductDoc|6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b : ', u'statusCode': 201}</msg>
+<status status="PASS" endtime="20200115 15:40:11.555" starttime="20200115 15:40:11.554"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${json}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:11.555" level="INFO">{u'message': u'Request for [IssueProduct] CREATE ProductDoc|6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b : ', u'statusCode': 201}</msg>
+<status status="PASS" endtime="20200115 15:40:11.555" starttime="20200115 15:40:11.555"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:11.556" level="INFO">&lt;Response [201]&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:11.556" starttime="20200115 15:40:11.556"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${data}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:11.557" level="INFO">{"bc_user": "123456", "plant_info": [ { "garden_id": 1, "planyear_date": "2018-08-04", "plant_id": 2 } ], "lotNo": "1", "product_name": "Weedy", "product_image": "cp/git/stock/produck2.png"}</msg>
+<status status="PASS" endtime="20200115 15:40:11.557" starttime="20200115 15:40:11.556"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+</arguments>
+<msg timestamp="20200115 15:40:11.557" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:11.558" starttime="20200115 15:40:11.557"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:40:11.558" starttime="20200115 15:40:09.435"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:40:11.558" critical="yes" starttime="20200115 15:40:09.434"></status>
+</test>
+<test id="s1-t10" name="Test POST Doc Verify">
+<kw name="POST Doc Verify">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>url</arg>
+<arg>${URL_GET}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:11.560" level="INFO">Creating Session using : alias=url, url=http://localhost:7777, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20200115 15:40:11.561" starttime="20200115 15:40:11.559"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+<arg>apikey=${jwt_token2}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20200115 15:40:11.562" level="INFO">${headers} = {u'Content-Type': u'application/json', u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1'}</msg>
+<status status="PASS" endtime="20200115 15:40:11.562" starttime="20200115 15:40:11.561"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>{"bc_user": ${bc_user}, "plant_info": [ { "garden_id": "1", "planyear_date": "2018-08-04", "plant_id": "2" }, { "garden_id": "1", "planyear_date": "2018-08-04", "plant_id": "3" } ], "issue_date": "2018-12-21", "id": "3", "company_id": "1", "user_id": "4", "is_pass": "1", "is_approve": "null", "is_draft": "1", "inspect_date": "2019-11-18", "inspect_start_time": "12:00:00", "inspect_end_time": "17:00:00", "approve_start_date": "null", "approve_end_date": "null", "remark": "null", "data": { "inspect_type": { "type": "ตรวจโดยไม่แจ้งล่วงหน้า", "year": "null" }, "standard_type": { "type": "PGS", "year": "null" }, "consideration_for_approve": { "plan_product_support_standard": [ { "product_id": "1", "name": "ผักสลัด" }, { "product_id": "15", "name": "สลัด" } ], "approvement_and_condition": "123", "period_of_change": "123", "plan_product_unsupport_standard": [ { "product_id": "ยี่หร่า", "name": "ยี่หร่า" } ], "next_inspection": "fdsafdaf" }, "farm_document": { "prepare_plating": "มี", "farm_plan_document": "มี", "organic_standard": "มี", "prepare_plating_is_completely": "ต้องปรับปรุง", "prepare_plating_describe": "รายละเอียดปรับปรุง", "farm_plan_document_is_completely": "ต้องปรับปรุง", "farm_plan_document_describe": "รายละเอียดปรับปรุง", "organic_standard_describe": "รายละเอียดปรับปรุง" }, "planting_data": { "info": "ข้อมูลตามแผน" }, "inspection_scope": { "is_all_oranic_garden": "true", "remark": "123" }, "user_sign_data": { "farmer": { "sign_image": "/upload/inspection_verifier_sign/inspection_verifier_sign-5dde43d6710a62.93582640.png", "sign_date": "2019-12-17" }, "inspector": { "sign_image": "null", "sign_date": "2018-12-17", "sign_image_upload": "/upload/inspection_verifier_sign/inspection_verifier_sign-5dde43d6710a62.93582640.png" }, "endorser": { "sign_image": "null", "sign_date": "2019-12-17", "sign_image_upload": "/upload/inspection_verifier_sign/inspection_verifier_sign-5dde43d6710a62.93582640.png" } } }, "user_fullname": "บุญล้อม เรืองแสง", "user_farmer_code": "FAR0004", "user_address": "27 หมู่5 ", "user_latitude": "12.59968640", "user_longitude": "99.54296710", "zip_code": "76170", "district_name": "ป่าเด็ง", "amphur_name": "แก่งกระจาน", "province_name": "เพชรบุรี", "user_phone": "0868665456", "group_id": "1", "group_name": "organic", "garden_name": "แปลงที่ 1", "problem_images": [ { "id": "6", "inspect_verifier_id": "3", "image_path": "/upload/inspection_verifier_problem/inspection_verifier_problem-5de09c75b41b60.30134576.png" }, { "id": "6", "inspect_verifier_id": "3", "image_path": "/upload/inspection_verifier_problem/inspection_verifier_problem-5de0d0e3265458.89572852.png" } ], "report_images": [ { "id": "6", "inspect_verifier_id": "3", "image_path": "/upload/inspection_verifier_report/inspection_verifier_report-5de09c7e7c6894.79609671.png" } ]}</arg>
+</arguments>
+<assign>
+<var>${data}</var>
+</assign>
+<msg timestamp="20200115 15:40:11.563" level="INFO">${data} = {"bc_user": "123456", "plant_info": [ { "garden_id": "1", "planyear_date": "2018-08-04", "plant_id": "2" }, { "garden_id": "1", "planyear_date": "2018-08-04", "plant_id": "3" } ], "issue_date": "2018-...</msg>
+<status status="PASS" endtime="20200115 15:40:11.563" starttime="20200115 15:40:11.562"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>url</arg>
+<arg>/Verify</arg>
+<arg>headers=${headers}</arg>
+<arg>data=${data}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20200115 15:40:11.565" level="INFO">POST Request using : uri=/Verify, files=None, params=None, timeout=None, allow_redirects=True
+headers={u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'User-Agent': 'python-requests/2.9.1', 'Connection': 'keep-alive', u'Content-Type': u'application/json'} 
+data={"bc_user": "123456", "plant_info": [ { "garden_id": "1", "planyear_date": "2018-08-04", "plant_id": "2" }, { "garden_id": "1", "planyear_date": "2018-08-04", "plant_id": "3" } ], "issue_date": "2018-12-21", "id": "3", "company_id": "1", "user_id": "4", "is_pass": "1", "is_approve": "null", "is_draft": "1", "inspect_date": "2019-11-18", "inspect_start_time": "12:00:00", "inspect_end_time": "17:00:00", "approve_start_date": "null", "approve_end_date": "null", "remark": "null", "data": { "inspect_type": { "type": "ตรวจโดยไม่แจ้งล่วงหน้า", "year": "null" }, "standard_type": { "type": "PGS", "year": "null" }, "consideration_for_approve": { "plan_product_support_standard": [ { "product_id": "1", "name": "ผักสลัด" }, { "product_id": "15", "name": "สลัด" } ], "approvement_and_condition": "123", "period_of_change": "123", "plan_product_unsupport_standard": [ { "product_id": "ยี่หร่า", "name": "ยี่หร่า" } ], "next_inspection": "fdsafdaf" }, "farm_document": { "prepare_plating": "มี", "farm_plan_document": "มี", "organic_standard": "มี", "prepare_plating_is_completely": "ต้องปรับปรุง", "prepare_plating_describe": "รายละเอียดปรับปรุง", "farm_plan_document_is_completely": "ต้องปรับปรุง", "farm_plan_document_describe": "รายละเอียดปรับปรุง", "organic_standard_describe": "รายละเอียดปรับปรุง" }, "planting_data": { "info": "ข้อมูลตามแผน" }, "inspection_scope": { "is_all_oranic_garden": "true", "remark": "123" }, "user_sign_data": { "farmer": { "sign_image": "/upload/inspection_verifier_sign/inspection_verifier_sign-5dde43d6710a62.93582640.png", "sign_date": "2019-12-17" }, "inspector": { "sign_image": "null", "sign_date": "2018-12-17", "sign_image_upload": "/upload/inspection_verifier_sign/inspection_verifier_sign-5dde43d6710a62.93582640.png" }, "endorser": { "sign_image": "null", "sign_date": "2019-12-17", "sign_image_upload": "/upload/inspection_verifier_sign/inspection_verifier_sign-5dde43d6710a62.93582640.png" } } }, "user_fullname": "บุญล้อม เรืองแสง", "user_farmer_code": "FAR0004", "user_address": "27 หมู่5 ", "user_latitude": "12.59968640", "user_longitude": "99.54296710", "zip_code": "76170", "district_name": "ป่าเด็ง", "amphur_name": "แก่งกระจาน", "province_name": "เพชรบุรี", "user_phone": "0868665456", "group_id": "1", "group_name": "organic", "garden_name": "แปลงที่ 1", "problem_images": [ { "id": "6", "inspect_verifier_id": "3", "image_path": "/upload/inspection_verifier_problem/inspection_verifier_problem-5de09c75b41b60.30134576.png" }, { "id": "6", "inspect_verifier_id": "3", "image_path": "/upload/inspection_verifier_problem/inspection_verifier_problem-5de0d0e3265458.89572852.png" } ], "report_images": [ { "id": "6", "inspect_verifier_id": "3", "image_path": "/upload/inspection_verifier_report/inspection_verifier_report-5de09c7e7c6894.79609671.png" } ]} 
+json=None</msg>
+<msg timestamp="20200115 15:40:11.567" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20200115 15:40:13.668" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:13.668" starttime="20200115 15:40:11.563"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${response.json()}</arg>
+</arguments>
+<assign>
+<var>${json}</var>
+</assign>
+<msg timestamp="20200115 15:40:13.669" level="INFO">${json} = {u'message': u'Request for [Printverifyform] CREATE VerifyDoc|312e36040449f64d91c739f43f4fda6f6512bd2bed967fb11550b3013ddf889d : ', u'statusCode': 201}</msg>
+<status status="PASS" endtime="20200115 15:40:13.669" starttime="20200115 15:40:13.668"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${json}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:13.669" level="INFO">{u'message': u'Request for [Printverifyform] CREATE VerifyDoc|312e36040449f64d91c739f43f4fda6f6512bd2bed967fb11550b3013ddf889d : ', u'statusCode': 201}</msg>
+<status status="PASS" endtime="20200115 15:40:13.669" starttime="20200115 15:40:13.669"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:13.669" level="INFO">&lt;Response [201]&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:13.670" starttime="20200115 15:40:13.669"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${data}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:13.670" level="INFO">{"bc_user": "123456", "plant_info": [ { "garden_id": "1", "planyear_date": "2018-08-04", "plant_id": "2" }, { "garden_id": "1", "planyear_date": "2018-08-04", "plant_id": "3" } ], "issue_date": "2018-12-21", "id": "3", "company_id": "1", "user_id": "4", "is_pass": "1", "is_approve": "null", "is_draft": "1", "inspect_date": "2019-11-18", "inspect_start_time": "12:00:00", "inspect_end_time": "17:00:00", "approve_start_date": "null", "approve_end_date": "null", "remark": "null", "data": { "inspect_type": { "type": "ตรวจโดยไม่แจ้งล่วงหน้า", "year": "null" }, "standard_type": { "type": "PGS", "year": "null" }, "consideration_for_approve": { "plan_product_support_standard": [ { "product_id": "1", "name": "ผักสลัด" }, { "product_id": "15", "name": "สลัด" } ], "approvement_and_condition": "123", "period_of_change": "123", "plan_product_unsupport_standard": [ { "product_id": "ยี่หร่า", "name": "ยี่หร่า" } ], "next_inspection": "fdsafdaf" }, "farm_document": { "prepare_plating": "มี", "farm_plan_document": "มี", "organic_standard": "มี", "prepare_plating_is_completely": "ต้องปรับปรุง", "prepare_plating_describe": "รายละเอียดปรับปรุง", "farm_plan_document_is_completely": "ต้องปรับปรุง", "farm_plan_document_describe": "รายละเอียดปรับปรุง", "organic_standard_describe": "รายละเอียดปรับปรุง" }, "planting_data": { "info": "ข้อมูลตามแผน" }, "inspection_scope": { "is_all_oranic_garden": "true", "remark": "123" }, "user_sign_data": { "farmer": { "sign_image": "/upload/inspection_verifier_sign/inspection_verifier_sign-5dde43d6710a62.93582640.png", "sign_date": "2019-12-17" }, "inspector": { "sign_image": "null", "sign_date": "2018-12-17", "sign_image_upload": "/upload/inspection_verifier_sign/inspection_verifier_sign-5dde43d6710a62.93582640.png" }, "endorser": { "sign_image": "null", "sign_date": "2019-12-17", "sign_image_upload": "/upload/inspection_verifier_sign/inspection_verifier_sign-5dde43d6710a62.93582640.png" } } }, "user_fullname": "บุญล้อม เรืองแสง", "user_farmer_code": "FAR0004", "user_address": "27 หมู่5 ", "user_latitude": "12.59968640", "user_longitude": "99.54296710", "zip_code": "76170", "district_name": "ป่าเด็ง", "amphur_name": "แก่งกระจาน", "province_name": "เพชรบุรี", "user_phone": "0868665456", "group_id": "1", "group_name": "organic", "garden_name": "แปลงที่ 1", "problem_images": [ { "id": "6", "inspect_verifier_id": "3", "image_path": "/upload/inspection_verifier_problem/inspection_verifier_problem-5de09c75b41b60.30134576.png" }, { "id": "6", "inspect_verifier_id": "3", "image_path": "/upload/inspection_verifier_problem/inspection_verifier_problem-5de0d0e3265458.89572852.png" } ], "report_images": [ { "id": "6", "inspect_verifier_id": "3", "image_path": "/upload/inspection_verifier_report/inspection_verifier_report-5de09c7e7c6894.79609671.png" } ]}</msg>
+<status status="PASS" endtime="20200115 15:40:13.670" starttime="20200115 15:40:13.670"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+</arguments>
+<msg timestamp="20200115 15:40:13.670" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:13.670" starttime="20200115 15:40:13.670"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:40:13.670" starttime="20200115 15:40:11.559"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:40:13.671" critical="yes" starttime="20200115 15:40:11.559"></status>
+</test>
+<test id="s1-t11" name="Test POST Doc queryMainpage">
+<kw name="POST Doc queryMainpage">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>url</arg>
+<arg>${URL_GET}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:13.671" level="INFO">Creating Session using : alias=url, url=http://localhost:7777, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20200115 15:40:13.672" starttime="20200115 15:40:13.671"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+<arg>apikey=${jwt_token2}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20200115 15:40:13.672" level="INFO">${headers} = {u'Content-Type': u'application/json', u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1'}</msg>
+<status status="PASS" endtime="20200115 15:40:13.673" starttime="20200115 15:40:13.672"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>{"bc_user": ${bc_user}, "harvest_id": "1", "lot_no": "19902"}</arg>
+</arguments>
+<assign>
+<var>${data}</var>
+</assign>
+<msg timestamp="20200115 15:40:13.673" level="INFO">${data} = {"bc_user": "123456", "harvest_id": "1", "lot_no": "19902"}</msg>
+<status status="PASS" endtime="20200115 15:40:13.673" starttime="20200115 15:40:13.673"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>url</arg>
+<arg>/queryMainpage</arg>
+<arg>headers=${headers}</arg>
+<arg>data=${data}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20200115 15:40:13.673" level="INFO">POST Request using : uri=/queryMainpage, files=None, params=None, timeout=None, allow_redirects=True
+headers={u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'User-Agent': 'python-requests/2.9.1', 'Connection': 'keep-alive', u'Content-Type': u'application/json'} 
+data={"bc_user": "123456", "harvest_id": "1", "lot_no": "19902"} 
+json=None</msg>
+<msg timestamp="20200115 15:40:13.674" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20200115 15:40:15.768" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:15.769" starttime="20200115 15:40:13.673"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${response.json()}</arg>
+</arguments>
+<assign>
+<var>${json}</var>
+</assign>
+<msg timestamp="20200115 15:40:15.769" level="INFO">${json} = {u'message': {u'planting_type': u'nil', u'Harvestlast_producttotal': 600, u'harvestlast_productunit': u'\u0e1c\u0e25', u'startplanting_date': u'2018-08-04', u'plant_name': u'\u0e2a\u0e27\u0e19', u'har...</msg>
+<status status="PASS" endtime="20200115 15:40:15.769" starttime="20200115 15:40:15.769"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${json}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:15.770" level="INFO">{u'message': {u'planting_type': u'nil', u'Harvestlast_producttotal': 600, u'harvestlast_productunit': u'\u0e1c\u0e25', u'startplanting_date': u'2018-08-04', u'plant_name': u'\u0e2a\u0e27\u0e19', u'harvest_date': u'2020-12-20', u'product_unit': u'\u0e1c\u0e25', u'Soldlast_producttotal': 0, u'sold_date': u'2019-10-11', u'plant_date': u'2018-08-04', u'planting_images': u'/home/sampran/images.jp', u'status_organic': u'\u0e2d\u0e34\u0e19\u0e17\u0e23\u0e35\u0e22\u0e4c', u'lots': u'nil', u'join_date': u'nil', u'group_fammer': u'\u0e44\u0e23\u0e48\u0e2a\u0e21\u0e0a\u0e32\u0e22', u'source': u'nil', u'harvestlast_date': u'2020-12-20', u'harvest_hash': u'26866cd19a75623380adf0b5c4f11eadd4a5c4bf4e1acb2036fdd8e2170c30ea', u'process_harvest_images': u'cp/git/stock/produck1.png', u'production_seccess_percent': 0, u'planyesr_hash': u'5cb7b2e28d443b75aea0db76e3715e6a5ce3d4c0c409acd526f4efc058fdf554', u'location': u'\u0e1b\u0e48\u0e32\u0e40\u0e14\u0e47\u0e07\u0e41\u0e01\u0e48\u0e07\u0e01\u0e23\u0e30\u0e08\u0e32\u0e19\u0e40\u0e1e\u0e0a\u0e23\u0e1a\u0e38\u0e23\u0e35', u'product_totald': 1200, u'selling': [{u'selling_date': u'2019-10-11', u'selling_amount': 50, u'selling_grade': u'sold_grade_a', u'selling_unit': u'nil', u'selling_market_place': u'darkmarket'}, {u'selling_date': u'2019-10-11', u'selling_amount': 30, u'selling_grade': u'sold_grade_b', u'selling_unit': u'nil', u'selling_market_place': u'darkmarket'}, {u'selling_date': u'2019-10-11', u'selling_amount': 20, u'selling_grade': u'sold_grade_c', u'selling_unit': u'nil', u'selling_market_place': u'darkmarket'}, {u'selling_date': u'2019-10-11', u'selling_amount': 50, u'selling_grade': u'sold_grade_d', u'selling_unit': u'nil', u'selling_market_place': u'darkmarket'}, {u'selling_date': u'2019-10-11', u'selling_amount': 50, u'selling_grade': u'sold_grade_e', u'selling_unit': u'nil', u'selling_market_place': u'darkmarket'}, {u'selling_date': u'2019-10-11', u'selling_amount': 50, u'selling_grade': u'sold_grade_a', u'selling_unit': u'nil', u'selling_market_place': u'darkmarket'}, {u'selling_date': u'2019-10-11', u'selling_amount': 30, u'selling_grade': u'sold_grade_b', u'selling_unit': u'nil', u'selling_market_place': u'darkmarket'}, {u'selling_date': u'2019-10-11', u'selling_amount': 20, u'selling_grade': u'sold_grade_c', u'selling_unit': u'nil', u'selling_market_place': u'darkmarket'}, {u'selling_date': u'2019-10-11', u'selling_amount': 50, u'selling_grade': u'sold_grade_d', u'selling_unit': u'nil', u'selling_market_place': u'darkmarket'}, {u'selling_date': u'2019-10-11', u'selling_amount': 50, u'selling_grade': u'sold_grade_e', u'selling_unit': u'nil', u'selling_market_place': u'darkmarket'}], u'endosrer': u'nil', u'garden_status_product': u'\u0e21\u0e35', u'checklast_date': u'2019-11-18', u'transport_date': u'nil', u'product_total_good': 1000, u'harvest_prediction': u'2019-10-19', u'harvest': [{u'harvest_status': u'\u0e04\u0e07\u0e04\u0e49\u0e32\u0e07', u'harvest_amount': 600, u'harvest_date': u'2020-12-20'}, {u'harvest_status': u'\u0e04\u0e07\u0e04\u0e49\u0e32\u0e07', u'harvest_amount': 600, u'harvest_date': u'2020-12-20'}], u'farmer_name': u'JoJo', u'total_amount': 1200, u'garden_hash': u'6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b', u'endorser': u'nil', u'garden_name': u'\u0e25\u0e33\u0e44\u0e22', u'product_image': u'nil', u'planting_hash': u'472b01093cf63449a189e5b5e08ce325346094eb83b90d3304a92659415870e2'}, u'statusCode': 200}</msg>
+<status status="PASS" endtime="20200115 15:40:15.770" starttime="20200115 15:40:15.770"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:15.770" level="INFO">&lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:15.770" starttime="20200115 15:40:15.770"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${data}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:15.771" level="INFO">{"bc_user": "123456", "harvest_id": "1", "lot_no": "19902"}</msg>
+<status status="PASS" endtime="20200115 15:40:15.771" starttime="20200115 15:40:15.770"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20200115 15:40:15.771" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:15.771" starttime="20200115 15:40:15.771"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:40:15.771" starttime="20200115 15:40:13.671"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:40:15.771" critical="yes" starttime="20200115 15:40:13.671"></status>
+</test>
+<test id="s1-t12" name="Test Post Doc queryPlantHistory">
+<kw name="POST Doc queryPlantHistory">
+<kw name="Create Session" library="RequestsLibrary">
+<doc>Create Session: create a HTTP session to a server</doc>
+<arguments>
+<arg>url</arg>
+<arg>${URL_GET}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:15.772" level="INFO">Creating Session using : alias=url, url=http://localhost:7777, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" endtime="20200115 15:40:15.773" starttime="20200115 15:40:15.772"></status>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<arguments>
+<arg>Content-Type=application/json</arg>
+<arg>apikey=${jwt_token2}</arg>
+</arguments>
+<assign>
+<var>${headers}</var>
+</assign>
+<msg timestamp="20200115 15:40:15.773" level="INFO">${headers} = {u'Content-Type': u'application/json', u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1'}</msg>
+<status status="PASS" endtime="20200115 15:40:15.773" starttime="20200115 15:40:15.773"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>{"bc_user": ${bc_user},"hash_planting": "472b01093cf63449a189e5b5e08ce325346094eb83b90d3304a92659415870e2"}</arg>
+</arguments>
+<assign>
+<var>${data}</var>
+</assign>
+<msg timestamp="20200115 15:40:15.773" level="INFO">${data} = {"bc_user": "123456","hash_planting": "472b01093cf63449a189e5b5e08ce325346094eb83b90d3304a92659415870e2"}</msg>
+<status status="PASS" endtime="20200115 15:40:15.773" starttime="20200115 15:40:15.773"></status>
+</kw>
+<kw name="Post Request" library="RequestsLibrary">
+<doc>Send a POST request on the session object found using the
+given `alias`</doc>
+<arguments>
+<arg>url</arg>
+<arg>/queryPlantHistory</arg>
+<arg>headers=${headers}</arg>
+<arg>data=${data}</arg>
+</arguments>
+<assign>
+<var>${response}</var>
+</assign>
+<msg timestamp="20200115 15:40:15.774" level="INFO">POST Request using : uri=/queryPlantHistory, files=None, params=None, timeout=None, allow_redirects=True
+headers={u'apikey': u'558344f429d66e42b53ff6449710cea0f79211c2163d3d92b4180eaee3b6afd1', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'User-Agent': 'python-requests/2.9.1', 'Connection': 'keep-alive', u'Content-Type': u'application/json'} 
+data={"bc_user": "123456","hash_planting": "472b01093cf63449a189e5b5e08ce325346094eb83b90d3304a92659415870e2"} 
+json=None</msg>
+<msg timestamp="20200115 15:40:15.775" level="INFO">Starting new HTTP connection (1): localhost</msg>
+<msg timestamp="20200115 15:40:17.855" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:17.855" starttime="20200115 15:40:15.774"></status>
+</kw>
+<kw name="Set Variable" library="BuiltIn">
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<arguments>
+<arg>${response.json()}</arg>
+</arguments>
+<assign>
+<var>${json}</var>
+</assign>
+<msg timestamp="20200115 15:40:17.855" level="INFO">${json} = {u'message': {u'production_activities': [{u'activities_type': u'\u0e01\u0e32\u0e23\u0e14\u0e39\u0e41\u0e25', u'activities_tool': u'\u0e1d\u0e31\u0e01\u0e1a\u0e31\u0e27', u'activities_name': u'\u0e23\u...</msg>
+<status status="PASS" endtime="20200115 15:40:17.855" starttime="20200115 15:40:17.855"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${json}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:17.856" level="INFO">{u'message': {u'production_activities': [{u'activities_type': u'\u0e01\u0e32\u0e23\u0e14\u0e39\u0e41\u0e25', u'activities_tool': u'\u0e1d\u0e31\u0e01\u0e1a\u0e31\u0e27', u'activities_name': u'\u0e23\u0e14\u0e19\u0e49\u0e33', u'activities_date': u'2018-08-04'}], u'selling': [{u'activities_type': u'\u0e01\u0e32\u0e23\u0e02\u0e32\u0e22', u'activities_tool': u'\u0e01\u0e23\u0e30\u0e2a\u0e2d\u0e1a', u'activities_name': u'\u0e02\u0e32\u0e22', u'activities_date': u'2019-10-11'}, {u'activities_type': u'\u0e01\u0e32\u0e23\u0e02\u0e32\u0e22', u'activities_tool': u'\u0e01\u0e23\u0e30\u0e2a\u0e2d\u0e1a', u'activities_name': u'\u0e02\u0e32\u0e22', u'activities_date': u'2019-10-11'}], u'harvest': [{u'activities_type': u'\u0e01\u0e32\u0e23\u0e40\u0e01\u0e47\u0e1a\u0e40\u0e01\u0e35\u0e48\u0e22\u0e27', u'activities_tool': u'\u0e23\u0e16\u0e44\u0e16', u'activities_name': u'\u0e40\u0e01\u0e47\u0e1a\u0e40\u0e01\u0e35\u0e48\u0e22\u0e27', u'activities_date': u'2020-12-20'}, {u'activities_type': u'\u0e01\u0e32\u0e23\u0e40\u0e01\u0e47\u0e1a\u0e40\u0e01\u0e35\u0e48\u0e22\u0e27', u'activities_tool': u'\u0e23\u0e16\u0e44\u0e16', u'activities_name': u'\u0e40\u0e01\u0e47\u0e1a\u0e40\u0e01\u0e35\u0e48\u0e22\u0e27', u'activities_date': u'2020-12-20'}]}, u'statusCode': 200}</msg>
+<status status="PASS" endtime="20200115 15:40:17.856" starttime="20200115 15:40:17.855"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${response}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:17.856" level="INFO">&lt;Response [200]&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:17.856" starttime="20200115 15:40:17.856"></status>
+</kw>
+<kw name="Log" library="BuiltIn">
+<doc>Logs the given message with the given level.</doc>
+<arguments>
+<arg>${data}</arg>
+</arguments>
+<msg timestamp="20200115 15:40:17.856" level="INFO">{"bc_user": "123456","hash_planting": "472b01093cf63449a189e5b5e08ce325346094eb83b90d3304a92659415870e2"}</msg>
+<status status="PASS" endtime="20200115 15:40:17.857" starttime="20200115 15:40:17.856"></status>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<arguments>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+</arguments>
+<msg timestamp="20200115 15:40:17.857" level="INFO">Argument types are:
+&lt;type 'int'&gt;
+&lt;type 'unicode'&gt;</msg>
+<status status="PASS" endtime="20200115 15:40:17.857" starttime="20200115 15:40:17.857"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:40:17.857" starttime="20200115 15:40:15.772"></status>
+</kw>
+<status status="PASS" endtime="20200115 15:40:17.857" critical="yes" starttime="20200115 15:40:15.771"></status>
+</test>
+<status status="PASS" endtime="20200115 15:40:17.858" starttime="20200115 15:39:35.388"></status>
+</suite>
+<statistics>
+<total>
+<stat fail="0" pass="12">Critical Tests</stat>
+<stat fail="0" pass="12">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat fail="0" id="s1" name="Testsampran" pass="12">Testsampran</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
